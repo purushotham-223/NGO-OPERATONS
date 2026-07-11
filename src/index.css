@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Light Theme Tokens ─── */
+:root {
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --border-color: #E2E8F0;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(226, 232, 240, 0.9);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.06);
+  --sidebar-width: 256px;
+  --sidebar-collapsed: 72px;
+}
+
+/* ─── Dark Theme Tokens ─── */
+.dark {
+  --bg-primary: #0B0F19;
+  --bg-secondary: #111827;
+  --bg-card: #161F30;
+  --border-color: #1E293B;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --glass-bg: rgba(22, 31, 48, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+}
+
+/* ─── Base Resets ─── */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Page Entry Animation ─── */
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-page-enter {
+  animation: fadeInSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── Glassmorphism Utility ─── */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* ─── Sidebar Transition ─── */
+.sidebar { transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* ─── Gradient Text ─── */
+.gradient-text {
+  background: linear-gradient(135deg, #6366F1, #8B5CF6, #14B8A6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Progress Bar ─── */
+.progress-bar {
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Auth Orb Animation ─── */
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(30px, -40px) scale(1.05); }
+}
+.auth-orb-1 { animation: floatOrb 10s ease-in-out infinite; }
+.auth-orb-2 { animation: floatOrb 13s ease-in-out infinite reverse; }
+.auth-orb-3 { animation: floatOrb 8s ease-in-out 2s infinite; }
+
+/* ─── Kanban Task Card ─── */
+.task-card-enter {
+  animation: fadeInSlide 0.25s ease forwards;
+}
+
+/* ─── Print Styles for PDF ─── */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; color: black !important; font-size: 12px; }
+  .print-table { width: 100%; border-collapse: collapse; }
+  .print-table th, .print-table td {
+    border: 1px solid #475569;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .print-table th { background: #F1F5F9; font-weight: 600; }
+  .print-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
+}
